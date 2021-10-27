@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新建标签页</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: gainsboro;
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        #datetime {
+            font-size: 6rem;
+            color: white;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .bookmarks {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin-top: 12%;
+            padding: 0 20%;
+            grid-gap: 12px;
+        }
+
+        .grid {
+            margin-bottom: 20px;
+        }
+
+        .bookmark {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.3);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .bookmark:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+            transform: translateY(-10px);
+        }
+
+        .bookmark img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="datetime">
+        Loading
+    </div>
+    <nav class="bookmarks">
+        <div class="grid">
+            <a class="bookmark" href="https://www.baidu.com">
+                <img src="./assets/baidu.png" alt="Baidu">
+                百度
+            </a>
+        </div>
+        <div class="grid">
+            <a class="bookmark" href="https://www.bilibili.com">
+                <img src="./assets/bilibili.png" alt="BiliBili">
+                BiliBili</a>
+        </div>
+        <div class="grid">
+            <a class="bookmark" href="https://www.taobao.com">
+                <img src="./assets/taobao.png" alt="Taobao">
+                淘宝</a>
+        </div>
+        <div class="grid">
+            <a class="bookmark" href="https://www.jd.com">
+                <img src="./assets/jingdong.png" alt="Jingdong">
+                京东</a>
+        </div>
+        <div class="grid">
+            <a class="bookmark" href="https://www.douban.com">
+                <img src="./assets/douban.png" alt="Douban">
+                豆瓣</a>
+        </div>
+        <div class="grid">
+            <a class="bookmark" href="https://weibo.com">
+                <img src="./assets/weibo.png" alt="Weibo">
+                微博</a>
+        </div>
+        <div class="grid">
+            <a class="bookmark" href="https://tieba.baidu.com">
+                <img src="./assets/tieba.png" alt="Tieba">
+                贴吧</a>
+        </div>
+        <div class="grid">
+            <a class="bookmark" href="https://github.com">
+                <img src="./assets/github.png" alt="GitHub">
+                GitHub</a>
+        </div>
+    </nav>
+    <script>
+        var datetimeEl = document.querySelector('#datetime')
+        function setCurrentTime() {
+            var hours = ('0' + (new Date()).getHours()).slice(-2)
+            var mins = ('0' + (new Date()).getMinutes()).slice(-2)
+            datetimeEl.innerHTML = `${hours}:${mins}`
+        }
+
+        setCurrentTime()
+
+        setInterval(function () {
+            setCurrentTime()
+        }, 5000)
+
+        function getBingWallpaper(resp) {
+            const url = 'https://cn.bing.com' + resp.images[0].url
+            const bodyEl = document.querySelector('body')
+            bodyEl.style.backgroundImage = `url(${url})`
+        }
+    </script>
+    <script src="https://bing-wallpaper-jsonp.herokuapp.com/?format=js&callback=getBingWallpaper"></script>
+</body>
+
+</html>
